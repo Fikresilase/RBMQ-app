@@ -1,5 +1,5 @@
 import os
-from tkinter import Tk, filedialog, Button, Label, Radiobutton, IntVar, messagebox
+from tkinter import Tk, filedialog, Button, Label, Radiobutton, IntVar, messagebox, Frame
 from PIL import Image, ImageTk
 import numpy as np
 
@@ -42,10 +42,6 @@ def process_image(file_path, option):
     return processed_img
 
 def save_image(processed_img, original_path):
-    # Get the directory and filename
-    directory, file_name = os.path.split(original_path)
-    file_name_no_ext, ext = os.path.splitext(file_name)
-
     # Ask the user for the file format they want to save
     save_as = filedialog.asksaveasfilename(
         defaultextension=".png",
@@ -86,28 +82,37 @@ def process_and_save_image():
 # GUI Setup
 root = Tk()
 root.title("Image Processing App")
+root.geometry("500x600")  # Set a fixed size for the window
 
-var = IntVar()  # For radio button option
+# Frame for content
+content_frame = Frame(root, padx=20, pady=20)
+content_frame.pack(expand=True, fill='both')
 
-label_instruction = Label(root, text="1. Select an image")
-label_instruction.pack()
+# Instruction Label
+label_instruction = Label(content_frame, text="1. Select an image", font=("Helvetica", 12))
+label_instruction.pack(pady=(0, 10))
 
-btn_choose = Button(root, text="Choose Image", command=choose_image)
-btn_choose.pack()
+# Choose Image Button
+btn_choose = Button(content_frame, text="Choose Image", command=choose_image, width=20, height=2)
+btn_choose.pack(pady=(0, 20))
 
-label_image = Label(root)
-label_image.pack()
+# Display Image
+label_image = Label(content_frame)
+label_image.pack(pady=(0, 20))
 
-label_options = Label(root, text="2. Choose an option")
-label_options.pack()
+# Option Label
+label_options = Label(content_frame, text="2. Choose an option", font=("Helvetica", 12))
+label_options.pack(pady=(0, 10))
 
-radio1 = Radiobutton(root, text="Apply Median Quantization", variable=var, value=1)
-radio1.pack()
+# Option Radiobuttons
+var = IntVar()
+radio1 = Radiobutton(content_frame, text="Apply Median Quantization", variable=var, value=1, font=("Helvetica", 10))
+radio1.pack(anchor='w')
+radio2 = Radiobutton(content_frame, text="Apply Quantization + Bit Reduction", variable=var, value=2, font=("Helvetica", 10))
+radio2.pack(anchor='w')
 
-radio2 = Radiobutton(root, text="Apply Quantization + Bit Reduction", variable=var, value=2)
-radio2.pack()
-
-btn_process = Button(root, text="Process and Save Image", command=process_and_save_image)
-btn_process.pack()
+# Process and Save Button
+btn_process = Button(content_frame, text="Process and Save Image", command=process_and_save_image, width=20, height=2)
+btn_process.pack(pady=(20, 0))
 
 root.mainloop()
