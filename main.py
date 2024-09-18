@@ -1,7 +1,7 @@
 import sys
 import numpy as np
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QFileDialog, QLabel, QRadioButton, QVBoxLayout, QWidget, QHBoxLayout, QMessageBox
-from PyQt5.QtGui import QImage, QPixmap
+from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
 from PIL import Image
 
@@ -39,15 +39,15 @@ class ImageProcessor(QMainWindow):
         
         self.layout = QVBoxLayout(self.central_widget)
         
-        # Styling improvements
+        # Dark theme styling
         self.setStyleSheet("""
             QMainWindow {
-                background-color: #f0f0f0;
+                background-color: #1e1e1e;
             }
             QLabel {
                 font-size: 18px;
                 font-weight: bold;
-                color: #333;
+                color: #ffffff;
             }
             QPushButton {
                 background-color: #4CAF50;
@@ -62,16 +62,19 @@ class ImageProcessor(QMainWindow):
             }
             QRadioButton {
                 font-size: 16px;
-                color: #555;
+                color: #ffffff;
             }
             #imageLabel {
-                background-color: #dcdcdc;
-                border: 2px dashed #bbb;
+                background-color: #333;
+                border: 2px dashed #666;
                 min-width: 250px;
                 min-height: 250px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+            }
+            QMessageBox {
+                color: white;
             }
         """)
         
