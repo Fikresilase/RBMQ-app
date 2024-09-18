@@ -1,7 +1,8 @@
 import sys
 import numpy as np
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QFileDialog, QLabel, QRadioButton, QVBoxLayout, QWidget, QHBoxLayout
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QFileDialog, QLabel, QRadioButton, QVBoxLayout, QWidget, QHBoxLayout, QMessageBox
 from PyQt5.QtGui import QImage, QPixmap
+from PyQt5.QtCore import Qt
 from PIL import Image
 
 # Define the quantization median values for each group (32 groups with a width of 8)
@@ -40,6 +41,33 @@ class ImageProcessor(QMainWindow):
         self.layout = QVBoxLayout()
         self.central_widget.setLayout(self.layout)
         
+        # Styling
+        self.setStyleSheet("""
+            QMainWindow {
+                background-color: #f0f0f0;
+            }
+            QLabel {
+                font-size: 16px;
+                font-weight: bold;
+                color: #333;
+            }
+            QPushButton {
+                background-color: #4CAF50;
+                color: white;
+                border-radius: 10px;
+                padding: 10px;
+                font-size: 14px;
+                border: none;
+            }
+            QPushButton:hover {
+                background-color: #45a049;
+            }
+            QRadioButton {
+                font-size: 14px;
+                color: #555;
+            }
+        """)
+        
         self.label_instruction = QLabel('1. Select an image', self)
         self.layout.addWidget(self.label_instruction)
         
@@ -69,7 +97,7 @@ class ImageProcessor(QMainWindow):
         self.image_path, _ = QFileDialog.getOpenFileName(self, 'Select Image', '', 'Image Files (*.png *.jpg *.jpeg);;All Files (*)', options=options)
         if self.image_path:
             pixmap = QPixmap(self.image_path)
-            self.label_image.setPixmap(pixmap.scaled(250, 250))
+            self.label_image.setPixmap(pixmap.scaled(250, 250, Qt.KeepAspectRatio))
             
     def process_and_save_image(self):
         if not self.image_path:
@@ -82,7 +110,7 @@ class ImageProcessor(QMainWindow):
             return
         
         img = Image.open(self.image_path)
-        img_array = np.array(img)
+        img_array = np.array(img.convert('L'))  # Convert to grayscale
         
         if option == 1:
             processed_img_array = apply_median_quantization(img_array)
