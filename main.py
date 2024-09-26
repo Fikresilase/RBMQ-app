@@ -25,7 +25,7 @@ def apply_bit_reduction(img_array):
 
 def revert_bit_reduction(reduced_bit_image):
     """Revert from bit reduction (5 bits) to original quantized image."""
-    reverted_image = np.left_shift(reduced_bit_image, 3)  # Reverting bit depth
+    reverted_image = np.left_shift(reduced_bit_image, 3)+4  # Reverting bit depth
     return reverted_image
 
 class ImageProcessor(QMainWindow):
@@ -155,12 +155,12 @@ class ImageProcessor(QMainWindow):
                 b_reduced = apply_bit_reduction(b_quant)
                 processed_img_array = np.stack([r_reduced, g_reduced, b_reduced], axis=-1)
             elif option == 3:
-                r_quant = apply_median_quantization(r)
-                g_quant = apply_median_quantization(g)
-                b_quant = apply_median_quantization(b)
-                r_reduced = apply_bit_reduction(r_quant)
-                g_reduced = apply_bit_reduction(g_quant)
-                b_reduced = apply_bit_reduction(b_quant)
+                # r_quant = apply_median_quantization(r)
+                # g_quant = apply_median_quantization(g)
+                # b_quant = apply_median_quantization(b)
+                # r_reduced = apply_bit_reduction(r_quant)
+                # g_reduced = apply_bit_reduction(g_quant)
+                # b_reduced = apply_bit_reduction(b_quant)
                 r_reverted = revert_bit_reduction(r_reduced)
                 g_reverted = revert_bit_reduction(g_reduced)
                 b_reverted = revert_bit_reduction(b_reduced)
