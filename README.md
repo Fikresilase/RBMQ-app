@@ -24,11 +24,4 @@ A desKtop app built to make my research avalaible for public use
 ## Caution
 - this algorithm is still in the process of testing and development therefore dont use it on your important files and use it with caution
 ## interested in the research
-- <a
-                    href="https://arxiv.org/abs/2409.13789"
-                    class="font-medium text-slate-400 hover:text-teal-300 focus-visible:text-teal-300"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    aria-label="Visual Studio Code (opens in a new tab)"
-                    >arxiv</a
-                  >
+- <a href="https://arxiv.org/abs/2409.13789">arxiv</a>
