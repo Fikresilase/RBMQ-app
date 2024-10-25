@@ -1,6 +1,6 @@
 # RBMQ-App
 
-A desctop app built to make my research avaliable for public use
+A desKtop app built to make my research avalaible for public use
 
 ## Features
 
