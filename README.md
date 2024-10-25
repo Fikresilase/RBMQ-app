@@ -23,5 +23,5 @@ A desKtop app built to make my research avalaible for public use
 - follow the seamless GUI to compress your images
 ## Caution
 - this algorithm is still in the process of testing and development therefore dont use it on your important files and use it with caution
-## interested in the research
+## interested in the research?
 - <a href="https://arxiv.org/abs/2409.13789">arxiv</a>
