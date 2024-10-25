@@ -18,7 +18,7 @@ A desKtop app built to make my research avalaible for public use
 - Numpy
 - pillow
 ## Getting Started
-- clone this repository and then open the RBMQ.exe file in the dist folder
+- you can get the RBMQ.exe file in the release and run it directly on your computer, you can also fork or clone the code and run it in your code editor if you are a developer
 ## Getting Started
 - follow the seamless GUI to compress your images
 ## Caution
